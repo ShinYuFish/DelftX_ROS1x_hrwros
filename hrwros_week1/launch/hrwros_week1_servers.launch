@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Argument to the launch file.-->
+  <arg name="counter_delay_parameter" default="1.0"/>
+
+  <!-- Start the metres_to_feet service server ROS node.-->
+  <node name="metres_to_feet" pkg="hrwros_week1" type="metres_to_feet_server.py"
+    output="screen"/>
+
+  <!-- Start the action server ROS node if the start_as argument is true /-->
+  <node name="counter_with_delay" pkg="hrwros_week1" type="counter_with_delay_as.py"
+    output="screen">
+    <param name="counter_delay" type="double" value="$(arg counter_delay_parameter)"/>
+  </node>
+
+</launch>

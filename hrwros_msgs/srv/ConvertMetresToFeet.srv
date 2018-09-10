@@ -1,0 +1,4 @@
+float64 distance_metres		# Request message: Distance in (m) to be converted to feet.
+---
+float64 distance_feet		# Response message: Distance in feet after conversion.
+bool success				# Response message: Success or failure of conversion.
