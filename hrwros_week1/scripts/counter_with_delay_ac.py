@@ -19,7 +19,7 @@ def counter_with_delay_client():
     rospy.loginfo("Waiting for action server to come up...")
     client.wait_for_server()
 
-    num_counts = 10
+    num_counts = 5
 
     # Creates a goal to send to the action server.
     goal = CounterWithDelayGoal(num_counts)

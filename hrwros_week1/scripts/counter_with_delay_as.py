@@ -34,7 +34,7 @@ class CounterWithDelayActionClass(object):
         #     counter_delay = 1.0
         # else:
         # Get the parameter for delay between counts.
-        counter_delay_value = rospy.get_param("<write your code here>")
+        counter_delay_value = rospy.get_param('~counter_delay')
         rospy.loginfo("Parameter %s was found on the parameter server. Using %fs for counter delay."%("counter_delay", counter_delay_value))
 
         # Variable to decide the final state of the action server.
@@ -55,7 +55,7 @@ class CounterWithDelayActionClass(object):
             self._feedback.counts_elapsed = counter_idx
             self._as.publish_feedback(self._feedback)
             # Wait for counter_delay s before incrementing the counter.
-            <write your code here>
+            rospy.sleep(counter_delay_value)
 
         if success:
             self._result.result_message = "Successfully completed counting."

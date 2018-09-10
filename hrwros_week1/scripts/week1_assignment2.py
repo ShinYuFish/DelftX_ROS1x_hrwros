@@ -11,13 +11,13 @@ from hrwros_msgs.srv import ConvertMetresToFeet, ConvertMetresToFeetRequest, Con
 def box_height_info_callback(data):
     try:
         # Create a proxy for the service to convert metres to feet.
-        metres_to_feet = rospy.ServiceProxy(<update the correct details here>)
+        metres_to_feet = rospy.ServiceProxy('metres_to_feet', ConvertMetresToFeet)
 
         # Call the service here.
-        service_response = <write your code here>
+        service_response = metres_to_feet(data.box_height)
 
         # Write a log message here to print the height of this box in feet.
-        <write your code here>
+        rospy.loginfo("Box height in meter: %f, converted to feet: %f", data.box_height, service_response.distance_feet)
 
     except rospy.ServiceException, e:
         print "Service call failed: %s"%e
@@ -28,11 +28,11 @@ if __name__ == '__main__':
 
     # First wait for the service to become available.
     rospy.loginfo("Waiting for service...")
-    rospy.wait_for_service('<use the correct service name here>')
-    rospy.loginfo("Service %s is now available", '<use the correct service name here>')
+    rospy.wait_for_service('metres_to_feet')
+    rospy.loginfo("Service %s is now available", 'metres_to_feet')
 
     # Create a subscriber to the box height topic.
-    rospy.Subscriber(<use the correct topic name here>, <use the correct message type here>, <use the correct callback name here>)
+    rospy.Subscriber('box_height_info', BoxHeightInformation, box_height_info_callback)
 
     # Prevent this ROS node from terminating until Ctrl+C is pressed.
     rospy.spin()

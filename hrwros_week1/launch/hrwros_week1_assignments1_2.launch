@@ -1,4 +1,8 @@
 <?xml version="1.0"?>
 <launch>
   !-- YOUR CODE GOES HERE -->
+  <node name="compute_box_height" pkg="hrwros_week1" type="week1_assignment1.py"
+    output="screen"/>
+  <node name="box_height_in_feet" pkg="hrwros_week1" type="week1_assignment2.py"
+    output="screen"/>
 </launch>
