@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot name="break_beam" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="prefix" default="break_beam_"/>
+
+  <!-- URDF -->
+  <xacro:include filename="$(find hrwros_support)/urdf/break_beam/break_beam.urdf.xacro"/>
+  <xacro:break_beam_urdf prefix="$(arg prefix)"/>
+
+  <!-- Gazebo -->
+  <xacro:include filename="$(find hrwros_support)/urdf/break_beam/break_beam.gazebo.xacro"/>
+  <xacro:break_beam_gazebo prefix="$(arg prefix)"/>
+
+</robot>

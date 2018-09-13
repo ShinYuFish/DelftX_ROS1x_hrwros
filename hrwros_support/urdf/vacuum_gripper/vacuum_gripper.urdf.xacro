@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="vacuum_gripper_urdf" params="prefix joint_prefix">
+    <!-- link list -->
+    <link name="${prefix}base_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://hrwros_support/meshes/vacuum_gripper/visual/vacuum_gripper.dae"/>
+        </geometry>
+        <material name="red">
+          <color rgba="1 0 0 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://hrwros_support/meshes/vacuum_gripper/collision/vacuum_gripper.dae"/>
+        </geometry>
+        <material name="red"/>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <inertia ixx="1.0" ixy="0" ixz="0"
+                 iyy="1.0" iyz="0"
+                 izz="1.0" />
+        <mass value="1.0" />
+      </inertial>
+    </link>
+    <link name="${prefix}suction_cup"/>
+
+    <!-- joint list -->
+    <joint name="${joint_prefix}" type="fixed">
+      <origin xyz="0 0 0.080" rpy="0 0 0" />
+      <parent link="${prefix}base_link" />
+      <child link="${prefix}suction_cup" />
+    </joint>
+  </xacro:macro>
+</robot>

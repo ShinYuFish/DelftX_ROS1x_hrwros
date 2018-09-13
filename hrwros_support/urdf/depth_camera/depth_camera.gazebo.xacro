@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot name="depth_camera_gazebo" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="depth_camera_gazebo" params="prefix">
+    <xacro:property name="camera_name" value="${prefix}"/>
+
+    <gazebo reference="${prefix}base_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <gazebo reference="${prefix}camera_link">
+      <material>Gazebo/Grey</material>
+
+      <sensor type="depth" name="${camera_name}">
+        <update_rate>1.0</update_rate>
+        <camera>
+          <image>
+            <format>L8</format>
+            <width>640</width>
+            <height>480</height>
+          </image>
+          <horizontal_fov>0.9948</horizontal_fov>
+          <clip>
+            <near>0.01</near>
+            <far>5</far>
+          </clip>
+        </camera>
+        <plugin name="${prefix}_controller" filename="libgazebo_ros_openni_kinect.so">
+          <cameraName>${camera_name}</cameraName>
+          <frameName>${prefix}camera_link_optical</frameName>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>1.0</updateRate>
+          <pointCloudCutoff>0.5</pointCloudCutoff>
+          <baseline>0.2</baseline>
+          <focalLength>0</focalLength>
+          <hackBaseline>0</hackBaseline>
+          <distortionK1>0.00000001</distortionK1>
+          <distortionK2>0.00000001</distortionK2>
+          <distortionK3>0.00000001</distortionK3>
+          <distortionT1>0.00000001</distortionT1>
+          <distortionT2>0.00000001</distortionT2>
+          <CxPrime>0</CxPrime>
+          <Cx>0</Cx>
+          <Cy>0</Cy>
+
+          <imageTopicName>${camera_name}/depth/image_raw</imageTopicName>
+          <cameraInfoTopicName>${camera_name}/depth/camera_info</cameraInfoTopicName>
+          <depthImageTopicName>${camera_name}/depth/image_raw</depthImageTopicName>
+          <depthImageInfoTopicName>${camera_name}/depth/camera_info</depthImageInfoTopicName>
+          <pointCloudTopicName>${camera_name}/depth/points</pointCloudTopicName>
+        </plugin>
+      </sensor>
+    </gazebo>
+
+    <gazebo>
+      <static>true</static>
+    </gazebo>
+
+  </xacro:macro>
+</robot>

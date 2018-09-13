@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<robot name="workcell" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="workcell_parent_name" default="world_interface"/>
+  <!-- URDF -->
+  <xacro:include filename="$(find hrwros_support)/urdf/workcell/workcell.urdf.xacro"/>
+  <xacro:workcell_urdf workcell_parent="$(arg workcell_parent_name)"/>
+
+  <!-- Gazebo -->
+  <xacro:include filename="$(find hrwros_support)/urdf/workcell/workcell.gazebo.xacro"/>
+</robot>

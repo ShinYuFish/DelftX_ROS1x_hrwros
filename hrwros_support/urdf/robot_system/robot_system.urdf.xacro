@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot name="robot_system" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="robot_system_urdf" params="robot_prefix vacuum_gripper_prefix robot_type">
+
+    <!-- Robot -->
+    <xacro:if value="${robot_type == 'ur10'}">
+      <xacro:include filename="$(find ur_description)/urdf/ur10.urdf.xacro"/>
+      <xacro:ur10_robot prefix="${robot_prefix}" joint_limited="true"/>
+    </xacro:if>
+
+    <xacro:if value="${robot_type == 'ur5'}">
+      <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro"/>
+      <xacro:ur5_robot prefix="${robot_prefix}" joint_limited="true"/>
+    </xacro:if>
+
+    <!-- Vacuum Gripper -->
+    <xacro:include filename="$(find hrwros_support)/urdf/vacuum_gripper/vacuum_gripper.urdf.xacro"/>
+    <xacro:vacuum_gripper_urdf prefix="${vacuum_gripper_prefix}" joint_prefix="${vacuum_gripper_prefix}_joint"/>
+
+    <!-- Joints -->
+    <joint name="gripper_to_robot" type="fixed">
+      <parent link="${robot_prefix}tool0" />
+      <child link="${vacuum_gripper_prefix}base_link" />
+    </joint>
+</xacro:macro>
+
+</robot>

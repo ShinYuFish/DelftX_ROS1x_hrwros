@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find hrwros_week2)/urdf/hrwros_assignment2.xacro'" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <!-- Normally, we would create a separate file and include that, but let's not complicate things -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="false" />
+    <rosparam>
+     zeros:
+       robot1_shoulder_pan_joint  : 0.6207787083493841
+       robot1_shoulder_lift_joint : -1.004681330618082
+       robot1_elbow_joint         : 1.6983449885307538
+       robot1_wrist_1_joint       : -2.301530778020034
+       robot1_wrist_2_joint       : -1.625460038967466
+       robot1_wrist_3_joint       : 0.0
+       robot2_shoulder_pan_joint  : 1.5707963267950005
+       robot2_shoulder_lift_joint : -1.5525750894041779
+       robot2_elbow_joint         : 1.5525750894041783
+       robot2_wrist_1_joint       : -1.570796326795
+       robot2_wrist_2_joint       : -1.534353852013356
+       robot2_wrist_3_joint       : 0.0
+    </rosparam>
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find hrwros_week2)/config/assignment2.rviz" required="true" />
+</launch>

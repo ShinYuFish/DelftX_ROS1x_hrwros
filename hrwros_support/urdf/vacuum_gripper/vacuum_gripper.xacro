@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot name="vacuum_gripper" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="prefix" default="vacuum_gripper_"/>
+
+  <!-- URDF -->
+  <xacro:include filename="$(find hrwros_support)/urdf/vacuum_gripper/vacuum_gripper.urdf.xacro"/>
+  <xacro:vacuum_gripper_urdf prefix="$(arg prefix)"/>
+
+  <!-- Gazebo -->
+  <xacro:include filename="$(find hrwros_support)/urdf/vacuum_gripper/vacuum_gripper.gazebo.xacro"/>
+  <xacro:vacuum_gripper_gazebo prefix="$(arg prefix)" gripper_link="${prefix}::${prefix}tool0">
+    <drops_info/>
+  </xacro:vacuum_gripper_gazebo>
+
+</robot>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot name="robot_system" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="robot_type" default="ur10"/>
+  <xacro:arg name="robot_prefix" default="robot1_"/>
+  <xacro:arg name="vacuum_gripper_prefix" default="vacuum_gripper1_"/>
+  <xacro:arg name="robot_param" default="/robot1/robot1_description"/>
+
+  <!-- URDF -->
+  <xacro:include filename="$(find hrwros_support)/urdf/robot_system/robot_system.urdf.xacro"/>
+  <xacro:robot_system_urdf robot_type= "$(arg robot_type)" robot_prefix="$(arg robot_prefix)" vacuum_gripper_prefix="$(arg vacuum_gripper_prefix"/>
+
+  <!-- Gazebo -->
+  <xacro:include filename="$(find hrwros_support)/urdf/robot_system/robot_system.gazebo.xacro"/>
+  <xacro:robot_system_gazebo robot_prefix="$(arg robot_prefix)" robot_parameter_name="$(arg robot_param)"/>
+  <!-- <xacro:robot_system_gazebo parent_link_linear_actuator="$(arg parent_linear_actuator)"/> -->
+
+</robot>

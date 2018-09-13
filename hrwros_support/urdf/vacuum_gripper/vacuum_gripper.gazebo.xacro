@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="vacuum_gripper_gazebo" params="prefix **drops_info gripper_link plugin_name">
+    <gazebo reference="${prefix}base_link">
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="${prefix}tool0">
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo>
+      <plugin name="${plugin_name}" filename="libROSVacuumGripperPlugin.so">
+        <grasp_check>
+          <detach_steps>40</detach_steps>
+          <attach_steps>1</attach_steps>
+          <min_contact_count>1</min_contact_count>
+        </grasp_check>
+
+        <xacro:insert_block name="drops_info" />
+
+        <suction_cup_link>${gripper_link}</suction_cup_link>
+
+        <!-- ROS -->
+        <robot_namespace>/hrwros</robot_namespace>
+        <control_topic>${plugin_name}/control</control_topic>
+        <state_topic>${plugin_name}/state</state_topic>
+      </plugin>
+    </gazebo>
+
+  </xacro:macro>
+</robot>

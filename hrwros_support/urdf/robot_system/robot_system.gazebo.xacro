@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot name="robot_system" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="robot_system_gazebo" params="robot_prefix robot_parameter_name">
+    <!-- Vacuum Gripper -->
+    <!-- <xacro:include filename="$(find hrwros_support)/urdf/vacuum_gripper/vacuum_gripper.gazebo.xacro"/>
+    <xacro:vacuum_gripper_gazebo prefix="${vacuum_gripper_prefix}" gripper_link="robot_system_::robot_wrist_3_link">
+      <drops_info/>
+    </xacro:vacuum_gripper_gazebo> -->
+
+    <gazebo reference="${robot_prefix}base_link">
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+    <gazebo reference="${robot_prefix}shoulder_link">
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+    <gazebo reference="${robot_prefix}upper_arm_link">
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+    <gazebo reference="${robot_prefix}forearm_link">
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+    <gazebo reference="${robot_prefix}wrist_1_link">
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+    <gazebo reference="${robot_prefix}wrist_2_link">
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+    <gazebo reference="${robot_prefix}wrist_3_link">
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotParam>${robot_parameter_name}</robotParam>
+      </plugin>
+    </gazebo>
+</xacro:macro>
+
+</robot>

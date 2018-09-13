@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot name="break_beam_urdf" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="break_beam_urdf" params="prefix">
+    <!-- link list -->
+    <link name="${prefix}world_interface"/>
+    <link name="${prefix}base_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://hrwros_support/meshes/break_beam/visual/hokuyo.dae" />
+        </geometry>
+        <material name="dark_grey">
+          <color rgba="0.1 0.1 0.1 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://hrwros_support/meshes/break_beam/collision/hokuyo.dae" />
+        </geometry>
+        <material name="dark_grey"/>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <inertia ixx="0.1" ixy="0" ixz="0"
+                 iyy="0.1" iyz="0"
+                 izz="0.1" />
+        <mass value="1" />
+      </inertial>
+    </link>
+    <link name="${prefix}optical_link"/>
+
+    <!-- joint list -->
+    <joint name="${prefix}world_joint" type="fixed">
+      <parent link="${prefix}world_interface" />
+      <child link="${prefix}base_link" />
+      <origin xyz="1.6 2.7 0.925" rpy="0 0 ${radians(180)}" />
+    </joint>
+    <joint name="${prefix}joint_1" type="fixed">
+      <parent link="${prefix}base_link" />
+      <child link="${prefix}optical_link" />
+      <origin xyz="0.025 0 0" rpy="0 0 0" />
+    </joint>
+  </xacro:macro>
+</robot>

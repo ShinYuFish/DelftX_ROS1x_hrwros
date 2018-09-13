@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot name="depth_camera_urdf" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="depth_camera_urdf" params="prefix">
+    <xacro:property name="length" value="0.2"/>
+    <xacro:property name="width" value="0.050"/>
+    <xacro:property name="height" value="0.050"/>
+
+    <!-- link list -->
+    <link name="${prefix}world_interface"/>
+    <link name="${prefix}base_link">
+      <visual>
+        <origin xyz="0 0 ${height / 2}" rpy="0 0 0" />
+        <geometry>
+          <box size="${width} ${length} ${height}" />
+        </geometry>
+        <material name="dark_grey">
+          <color rgba="0.1 0.1 0.1 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${height / 2}" rpy="0 0 0" />
+        <geometry>
+          <box size="${width} ${length} ${height}" />
+        </geometry>
+        <material name="dark_grey"/>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <inertia ixx="0.1" ixy="0" ixz="0"
+                 iyy="0.1" iyz="0"
+                 izz="0.1" />
+        <mass value="1" />
+      </inertial>
+    </link>
+    <link name="${prefix}camera_link"/>
+    <link name="${prefix}camera_link_optical"/>
+
+    <!-- joint list -->
+    <joint name="${prefix}joint_1" type="fixed">
+      <parent link="${prefix}world_interface" />
+      <child link="${prefix}base_link" />
+      <origin xyz="1.2 3.0 1.65" rpy="0 ${radians(90)} -${radians(90)}" />
+    </joint>
+    <joint name="${prefix}joint_2" type="fixed">
+      <parent link="${prefix}base_link" />
+      <child link="${prefix}camera_link" />
+      <origin xyz="${width / 2} 0 ${height / 2}" rpy="0 0 0" />
+    </joint>
+    <joint name="${prefix}joint_3" type="fixed">
+      <parent link="${prefix}camera_link" />
+      <child link="${prefix}camera_link_optical" />
+      <origin xyz="0 0 0" rpy="-${radians(90)} 0 -${radians(90)}" />
+    </joint>
+  </xacro:macro>
+</robot>
