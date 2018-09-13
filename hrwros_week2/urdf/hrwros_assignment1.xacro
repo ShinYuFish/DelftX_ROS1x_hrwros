@@ -87,13 +87,18 @@
     <origin xyz="0 0 0.6" rpy="0 0 ${radians(90)}" />
   </joint>
 
-
+  
 
 
   <!-- Add your solution to assignment 1 here -->
+  <xacro:bin_urdf prefix="bin_2_"/>
 
-
-
+  <!-- bin 1 -->
+  <joint name="bin_2_joint" type="fixed">
+    <parent link="world_interface" />
+    <child link="bin_2_base_link" />
+    <origin xyz="2.5 1.8 0" rpy="0 0 0" />
+  </joint>
 
 
 </robot>
