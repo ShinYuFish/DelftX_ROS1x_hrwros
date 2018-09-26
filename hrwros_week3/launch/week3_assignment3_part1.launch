@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="move_turtlebot_target1" pkg="hrwros_week3" type="week3_assignment3_part1.py"
+    output="screen"/>
+</launch>

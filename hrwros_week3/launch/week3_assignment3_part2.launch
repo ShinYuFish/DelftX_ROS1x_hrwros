@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="enable_unknown_obstacles" default="false"/>
+
+  <!-- Navigate to target2 conditionally depending the enable obstacles parameter -->
+  <node name="move_turtlebot_target2" pkg="hrwros_week3" type="week3_assignment3_part2.py"
+    output="screen" unless="$(arg enable_unknown_obstacles)"/>
+
+  <include if="$(arg enable_unknown_obstacles)" file="$(find hrwros_week3)/launch/week3_assignment3_part1.launch"/>
+  <node  if="$(arg enable_unknown_obstacles)" name="spawn_unknown_obstacles" pkg="hrwros_week3" type="create_unknown_obstacles.py"
+    output="screen"/>
+</launch>

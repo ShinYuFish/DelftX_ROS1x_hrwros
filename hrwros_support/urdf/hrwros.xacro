@@ -22,9 +22,31 @@
   <xacro:include filename="$(find hrwros_support)/urdf/vacuum_gripper/vacuum_gripper.urdf.xacro"/>
   <xacro:vacuum_gripper_urdf prefix="vacuum_gripper1_" joint_prefix="vacuum_gripper1_joint"/>
 
+  <!-- Robot2 Pedestal -->
+  <xacro:include filename="$(find hrwros_support)/urdf/robot_pedestal/robot_pedestal.urdf.xacro"/>
+  <xacro:robot_pedestal_urdf pedestal_prefix="robot2_" pedestal_parent="world_interface" pedestal_height="0.7">
+    <origin xyz="-7.8 -1.5 0.0" rpy="0 0 0"/>
+  </xacro:robot_pedestal_urdf>
+
+  <!-- Robot2 -->
+  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro"/>
+  <xacro:ur5_robot prefix="robot2_" joint_limited="true"/>
+
+  <!-- Vacuum Gripper2 -->
+  <xacro:include filename="$(find hrwros_support)/urdf/vacuum_gripper/vacuum_gripper.urdf.xacro"/>
+  <xacro:vacuum_gripper_urdf prefix="vacuum_gripper2_" joint_prefix="vacuum_gripper2_joint"/>
+
   <!-- bins -->
   <xacro:include filename="$(find hrwros_support)/urdf/bin/bin.urdf.xacro"/>
   <xacro:bin_urdf prefix="bin_1_"/>
+
+  <!-- depth camera -->
+  <xacro:include filename="$(find hrwros_support)/urdf/depth_camera/depth_camera.urdf.xacro"/>
+  <xacro:depth_camera_urdf prefix="depth_camera_"/>
+
+  <!-- break beam -->
+  <xacro:include filename="$(find hrwros_support)/urdf/break_beam/break_beam.urdf.xacro"/>
+  <xacro:break_beam_urdf prefix="break_beam_"/>
 
   <!-- Joints -->
   <joint name="world_interface_to_world" type="fixed">
@@ -52,40 +74,42 @@
     <child link="vacuum_gripper1_base_link" />
   </joint>
 
-  <!-- bin 1 -->
+  <!-- robot2-pedestal to world. -->
+  <joint name="robot2_pedestal_to_world_interface" type="fixed">
+    <parent link="world_interface" />
+    <child link="robot2_pedestal_link" />
+    <origin xyz="-7.8 -1.5 0.0" rpy="0.0 0.0 0.0"/>
+  </joint>
+
+  <!-- robot2 to pedestal. -->
+  <joint name="robot2_to_pedestal" type="fixed">
+    <parent link="robot2_pedestal_link" />
+    <child link="robot2_base_link" />
+    <origin xyz="0 0 0.7" rpy="0 0 ${radians(90)}" />
+  </joint>
+
+  <!-- gripper2 to robot2. -->
+  <joint name="gripper2_to_robot2" type="fixed">
+    <parent link="robot2_tool0" />
+    <child link="vacuum_gripper2_base_link" />
+  </joint>
+
+  <!-- break beam to world. -->
+  <joint name="break_beam_joint" type="fixed">
+    <parent link="world_interface" />
+    <child link="break_beam_world_interface" />
+  </joint>
+
+  <!-- TODO: Replace this with logical camera. -->
+  <joint name="camera_link" type="fixed">
+    <parent link="world_interface"/>
+    <child link="depth_camera_world_interface" />
+  </joint>
+
+  <!-- bin to world. -->
   <joint name="bin_1_joint" type="fixed">
     <parent link="world_interface" />
     <child link="bin_1_base_link" />
-    <origin xyz="-8.0 -2.2 0" rpy="0 0 0" />
+    <origin xyz="-8.0 -2.2 0.0" rpy="0 0 0" />
   </joint>
-
-
-  <link name="robot2_pedestal_link">
-    <visual>
-      <origin xyz="0 0 0.3" />
-      <geometry>
-        <box size="0.3 0.3 0.6" />
-      </geometry>
-      <material name="robot2_pedestal_color">
-        <color rgba="0 ${40/255} ${134/255} 1" />
-      </material>
-    </visual>
-  </link>
-
-  <joint name="robot2_pedestal_joint" type="fixed">
-    <origin xyz="-7.8 -1.5 0" />
-    <parent link="world" />
-    <child link="robot2_pedestal_link" />
-  </joint>
-
-
-  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro"/>
-  <xacro:ur5_robot prefix="robot2_" joint_limited="true"/>
-  <joint name="robot2-robot2_pedestal_joint" type="fixed">
-    <parent link="robot2_pedestal_link" />
-    <child link="robot2_base_link" />
-    <origin xyz="0 0 0.6" rpy="0 0 ${radians(90)}" />
-  </joint>
-
-
 </robot>

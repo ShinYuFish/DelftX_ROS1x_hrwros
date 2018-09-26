@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="robot1_prefix" value="robot1_"/>
+  <arg name="robot2_prefix" value="robot2_"/>
+  <arg name="robot1_type" value="ur10"/>
+  <arg name="robot2_type" value="ur5"/>
+  <arg name="vacuum_gripper1_prefix" value="vacuum_gripper1_"/>
+  <arg name="vacuum_gripper2_prefix" value="vacuum_gripper2_"/>
+
+
+  <!-- Parameters and nodes in the namespace of robot1. -->
+  <group ns="/robot1">
+    <param name="tf_prefix" value="robot1"/>
+
+    <param name="/robot1/$(arg robot1_prefix)description"
+      command="$(find xacro)/xacro --inorder '$(find hrwros_support)/urdf/robot_system/robot_system.xacro' robot_type:=$(arg robot1_type) robot_prefix:=$(arg robot1_prefix) vacuum_gripper_prefix:=$(arg vacuum_gripper1_prefix) robot_param:=/robot1/$(arg robot1_prefix)description"/>
+
+    <!-- Spawn robot1. -->
+    <node name="robot1_spawner" pkg="gazebo_ros" type="spawn_model"
+      args="-x 0.5 -y 1.8 -z 0.95 -unpause -urdf -model robot1 -param robot1_description" respawn="false" output="screen">
+    </node>
+  </group>
+
+  <!-- Parameters and nodes in the namespace of robot2. -->
+  <group ns="/robot2">
+    <param name="tf_prefix" value="robot2"/>
+
+    <param name="/robot2/$(arg robot2_prefix)description"
+      command="$(find xacro)/xacro --inorder '$(find hrwros_support)/urdf/robot_system/robot_system.xacro' robot_type:=$(arg robot2_type) robot_prefix:=$(arg robot2_prefix) vacuum_gripper_prefix:=$(arg vacuum_gripper2_prefix) robot_param:=/robot2/$(arg robot2_prefix)description"/>
+
+    <!-- Spawn robot2. -->
+    <node name="robot2_spawner" pkg="gazebo_ros" type="spawn_model"
+      args="-x -7.8 -y -1.5 -z 0.7 -Y 1.57 -unpause -urdf -model robot2 -param robot2_description" respawn="false" output="screen">
+    </node>
+  </group>
+
+</launch>

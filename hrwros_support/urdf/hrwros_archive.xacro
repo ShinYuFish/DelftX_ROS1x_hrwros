@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<robot name="hrwros" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- linear arm actuator -->
+  <xacro:include filename="$(find hrwros_support)/urdf/linear_actuator/linear_actuator.xacro" />
+  <xacro:linear_actuator prefix="linear_actuator_"/>
+
+  <!-- include the robot xacro -->
+  <xacro:include filename="$(find ur_description)/urdf/ur10.urdf.xacro" />
+  <xacro:ur10_robot prefix="robot_" joint_limited="false"/>
+
+  <!-- vacuum gripper -->
+  <xacro:property name="vacuum_gripper" value="vacuum_gripper_" />
+  <xacro:include filename="$(find hrwros_support)/urdf/vacuum_gripper/vacuum_gripper.xacro"/>
+  <xacro:vacuum_gripper prefix="vacuum_gripper_"/>
+
+  <!-- bins -->
+  <xacro:include filename="$(find hrwros_support)/urdf/bin/bin.xacro"/>
+  <xacro:bin prefix="bin_1_"/>
+  <xacro:bin prefix="bin_2_"/>
+  <xacro:bin prefix="bin_3_"/>
+
+  <!-- depth camera -->
+  <xacro:include filename="$(find hrwros_support)/urdf/depth_camera/depth_camera.xacro"/>
+  <xacro:depth_camera prefix="rgbd_1_"/>
+
+  <!-- break beam -->
+  <xacro:include filename="$(find hrwros_support)/urdf/break_beam/break_beam.xacro"/>
+  <xacro:break_beam prefix="break_beam_"/>
+
+  <!-- Links -->
+  <link name="world"/>
+  <link name="workcell">
+    <visual>
+      <geometry>
+        <mesh filename="package://hrwros_support/meshes/workcell/visual/workcell.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://hrwros_support/meshes/workcell/collision/workcell.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <inertia ixx="1.0" ixy="0" ixz="0"
+               iyy="1.0" iyz="0"
+               izz="1.0" />
+      <mass value="100" />
+    </inertial>
+  </link>
+
+  <!-- Joints -->
+  <joint name="workcell_to_world" type="fixed">
+    <parent link="world" />
+    <child link="workcell" />
+    <origin xyz="0 0 0" rpy="0 0 ${radians(90)}" />
+  </joint>
+
+  <joint name="linear_actuator_to_workcell" type="fixed">
+    <parent link="world" />
+    <child link="linear_actuator_base_link" />
+    <origin xyz="0.4 0.0 0.9" rpy="0 0 0" />
+  </joint>
+
+  <joint name="robot_to_actuator_carriage" type="fixed">
+    <parent link="linear_actuator_carriage" />
+    <child link="robot_base_link" />
+  </joint>
+
+  <joint name="vacuum_gripper_to_robot" type="fixed">
+    <parent link="robot_tool0" />
+    <child link="vacuum_gripper_base_link" />
+  </joint>
+
+  <!-- a break_beam type sensor in the frame break_beam_frame -->
+  <joint name="break_beam_joint" type="fixed">
+    <parent link="world" />
+    <child link="break_beam_base_link" />
+    <origin xyz="1.2 3.5 1.65" rpy="0 ${radians(90)} -${radians(90)}" />
+  </joint>
+
+  <!-- a kinect camera in the frame kinect_camera_frame -->
+  <joint name="camera_link" type="fixed">
+    <parent link="world"/>
+    <child link="rgbd_1_base_link" />
+    <origin xyz="1.2 3.0 1.65" rpy="${radians(90)} ${radians(90)} 0" />
+  </joint>
+
+  <!-- a bin in the frame bin1_frame -->
+  <joint name="bin_1_joint" type="fixed">
+    <parent link="linear_actuator_base_link" />
+    <child link="bin_1_base_link" />
+    <origin xyz="-0.8 -1.0 -0.9" rpy="0 0 0" />
+  </joint>
+
+  <!-- a bin in the frame bin2_frame -->
+  <joint name="bin_2_joint" type="fixed">
+    <parent link="linear_actuator_base_link" />
+    <child link="bin_2_base_link" />
+    <origin xyz="-0.8 0.0 -0.9" rpy="0 0 0" />
+  </joint>
+
+  <!-- a bin in the frame bin3_frame -->
+  <joint name="bin_3_joint" type="fixed">
+    <parent link="linear_actuator_base_link" />
+    <child link="bin_3_base_link" />
+    <origin xyz="-0.8 1.0 -0.9" rpy="0 0 0" />
+  </joint>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
+
+</robot>

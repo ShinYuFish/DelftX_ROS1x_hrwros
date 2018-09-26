@@ -12,6 +12,5 @@
   <!-- Gazebo -->
   <xacro:include filename="$(find hrwros_support)/urdf/robot_system/robot_system.gazebo.xacro"/>
   <xacro:robot_system_gazebo robot_prefix="$(arg robot_prefix)" robot_parameter_name="$(arg robot_param)"/>
-  <!-- <xacro:robot_system_gazebo parent_link_linear_actuator="$(arg parent_linear_actuator)"/> -->
 
 </robot>

@@ -1,0 +1,7 @@
+# Conveyor belt control
+
+# desired conveyor belt state
+ConveyorBeltState state
+
+---
+bool success

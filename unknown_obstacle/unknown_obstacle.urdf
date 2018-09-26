@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<robot name="simple_box">
+  <link name="unknown_obstacle_box">
+    <inertial>
+      <mass value="500"/>
+      <origin xyz="0 0 0.475" rpy="0 0 0"/>
+      <inertia ixx="10000" ixy="0" ixz="0" iyy="10000" iyz="0" izz="10000"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.475"/>
+      <geometry>
+        <box size="0.3 0.3 0.95" />
+      </geometry>
+      <material name="Blue">
+        <color rgba="0 0 1.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.475"/>
+      <geometry>
+        <box size="0.3 0.3 0.95" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="unknown_obstacle_box">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+</robot>

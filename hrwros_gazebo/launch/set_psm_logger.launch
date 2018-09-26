@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="rosservice" type="rosservice" name="suppress_psm_warnings" args="call --wait /move_group/set_logger_level  '{logger: ros.moveit_ros_planning.planning_scene_monitor, level: error}'"/>
+</launch>

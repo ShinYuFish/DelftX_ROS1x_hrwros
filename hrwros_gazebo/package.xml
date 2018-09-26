@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>hrwros_gazebo</name>
+  <version>0.1.0</version>
+  <description>The hrwros_gazebo package</description>
+
+  <maintainer email="yz6me@virginia.edu">Yizhe Zhang</maintainer>
+  <author email="yz6me@virginia.edu">Yizhe Zhang</author>
+
+  <!-- One license tag required, multiple allowed, one license per tag -->
+  <!-- Commonly used license strings: -->
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>gazebo_msgs</depend>
+  <depend>gazebo_plugins</depend>
+  <depend>gazebo_ros</depend>
+  <depend>geometry_msgs</depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>std_srvs</depend>
+  <depend>tinyxml</depend>
+  <depend>tf</depend>
+
+  <build_depend>message_generation</build_depend>
+
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>ur_description</exec_depend>
+  <exec_depend>turtlebot_description</exec_depend>
+  <exec_depend>rviz</exec_depend>
+  <exec_depend>yocs_cmd_vel_mux</exec_depend>
+  <exec_depend>kobuki_gazebo_plugins</exec_depend>
+
+  <export>
+    <gazebo_ros plugin_path="${prefix}/lib" />
+    <gazebo_ros gazebo_media_path="${prefix}" />
+    <gazebo_ros gazebo_model_path="${prefix}/models" />
+  </export>
+
+</package>
