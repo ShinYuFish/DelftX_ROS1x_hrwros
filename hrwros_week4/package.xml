@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>hrwros_week4</name>
+  <version>0.0.0</version>
+  <description>The hrwros_week4 package</description>
+
+  <!-- One maintainer tag required, multiple allowed, one person per tag -->
+  <!-- Example:  -->
+  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
+  <maintainer email="donnie@todo.todo">donnie</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>actionlib</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>moveit_msgs</build_depend>
+  <build_export_depend>actionlib</build_export_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <build_export_depend>moveit_msgs</build_export_depend>
+  <exec_depend>actionlib</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>moveit_msgs</exec_depend>
+</package>

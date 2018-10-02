@@ -6,6 +6,8 @@
   <arg name="robot2_type" value="ur5"/>
   <arg name="vacuum_gripper1_prefix" value="vacuum_gripper1_"/>
   <arg name="vacuum_gripper2_prefix" value="vacuum_gripper2_"/>
+  <arg name="gripper1_plugin_name" value="gripper1"/>
+  <arg name="gripper2_plugin_name" value="gripper2"/>
 
 
   <!-- Parameters and nodes in the namespace of robot1. -->
@@ -13,11 +15,19 @@
     <param name="tf_prefix" value="robot1"/>
 
     <param name="/robot1/$(arg robot1_prefix)description"
-      command="$(find xacro)/xacro --inorder '$(find hrwros_support)/urdf/robot_system/robot_system.xacro' robot_type:=$(arg robot1_type) robot_prefix:=$(arg robot1_prefix) vacuum_gripper_prefix:=$(arg vacuum_gripper1_prefix) robot_param:=/robot1/$(arg robot1_prefix)description"/>
+      command="$(find xacro)/xacro --inorder '$(find hrwros_support)/urdf/robot_system/robot_system.xacro' robot_type:=$(arg robot1_type) robot_prefix:=$(arg robot1_prefix) vacuum_gripper_prefix:=$(arg vacuum_gripper1_prefix) robot_param:=/robot1/$(arg robot1_prefix)description gripper_plugin_name:=$(arg gripper1_plugin_name)"/>
 
-    <!-- Spawn robot1. -->
+    <!-- Load the controllers for robot1. -->
+    <rosparam file="$(find hrwros_gazebo)/config/r1_joint_state_controller.yaml" command="load"/>
+    <rosparam file="$(find hrwros_gazebo)/config/robot1_controller.yaml" command="load"/>
+
+    <!-- Spawn robot1, its state publisher and controller. -->
     <node name="robot1_spawner" pkg="gazebo_ros" type="spawn_model"
       args="-x 0.5 -y 1.8 -z 0.95 -unpause -urdf -model robot1 -param robot1_description" respawn="false" output="screen">
+    </node>
+
+    <node name="robot1_controller_spawner" pkg="controller_manager" type="spawner"
+      args="r1_joint_state_controller robot1_controller">
     </node>
   </group>
 
@@ -26,11 +36,19 @@
     <param name="tf_prefix" value="robot2"/>
 
     <param name="/robot2/$(arg robot2_prefix)description"
-      command="$(find xacro)/xacro --inorder '$(find hrwros_support)/urdf/robot_system/robot_system.xacro' robot_type:=$(arg robot2_type) robot_prefix:=$(arg robot2_prefix) vacuum_gripper_prefix:=$(arg vacuum_gripper2_prefix) robot_param:=/robot2/$(arg robot2_prefix)description"/>
+      command="$(find xacro)/xacro --inorder '$(find hrwros_support)/urdf/robot_system/robot_system.xacro' robot_type:=$(arg robot2_type) robot_prefix:=$(arg robot2_prefix) vacuum_gripper_prefix:=$(arg vacuum_gripper2_prefix) robot_param:=/robot2/$(arg robot2_prefix)description gripper_plugin_name:=$(arg gripper2_plugin_name)"/>
 
-    <!-- Spawn robot2. -->
+    <!-- Load the controllers for robot2 -->
+    <rosparam file="$(find hrwros_gazebo)/config/r2_joint_state_controller.yaml" command="load"/>
+    <rosparam file="$(find hrwros_gazebo)/config/robot2_controller.yaml" command="load"/>
+
+    <!-- Spawn robot2, its state publisher and controller. -->
     <node name="robot2_spawner" pkg="gazebo_ros" type="spawn_model"
       args="-x -7.8 -y -1.5 -z 0.7 -Y 1.57 -unpause -urdf -model robot2 -param robot2_description" respawn="false" output="screen">
+    </node>
+
+    <node name="robot2_controller_spawner" pkg="controller_manager" type="spawner"
+      args="r2_joint_state_controller robot2_controller">
     </node>
   </group>
 

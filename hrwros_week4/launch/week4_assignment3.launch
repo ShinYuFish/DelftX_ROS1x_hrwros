@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Start the pick and place node for robot2 which is in week4_assignment3.py /-->
+  <node name="week4_assignment3" pkg="hrwros_week4" type="week4_assignment3.py" args="/joint_states:=/combined_joint_states joint_states:=/combined_joint_states" output="screen">
+  </node>
+</launch>

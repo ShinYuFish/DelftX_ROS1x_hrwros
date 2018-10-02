@@ -1,0 +1,19 @@
+controller_list:
+ - name: robot1/robot1_controller
+   action_ns: follow_joint_trajectory
+   type: FollowJointTrajectory
+   joints: ["robot1_elbow_joint",
+           "robot1_shoulder_lift_joint",
+           "robot1_shoulder_pan_joint",
+           "robot1_wrist_1_joint",
+           "robot1_wrist_2_joint",
+           "robot1_wrist_3_joint"]
+ - name: robot2/robot2_controller
+   action_ns: follow_joint_trajectory
+   type: FollowJointTrajectory
+   joints: ["robot2_elbow_joint",
+           "robot2_shoulder_lift_joint",
+           "robot2_shoulder_pan_joint",
+           "robot2_wrist_1_joint",
+           "robot2_wrist_2_joint",
+           "robot2_wrist_3_joint"]

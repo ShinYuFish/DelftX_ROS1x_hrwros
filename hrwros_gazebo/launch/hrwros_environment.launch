@@ -21,6 +21,12 @@
     <arg name="extra_gazebo_args" value="$(arg extra_gazebo_args)"/>
   </include>
 
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <include file="$(find hrwros_support)/launch/load_hrwros.launch"/>
+
+  <!-- Start move_group -->
+  <include file="$(find week4_moveit_config)/launch/move_group.launch"/>
+
   <!-- Spawn the URDF objects into Gazebo -->
   <include file="$(find hrwros_gazebo)/launch/spawn_static_world_objects.launch"/>
   <include file="$(find hrwros_gazebo)/launch/spawn_turtlebot.launch"/>
@@ -45,7 +51,22 @@
     <remap from="scan" to="/scan"/>
   </node>
 
+  <!-- Workaround for MoveIt! PSM warnings: Elevate the logger level of MoveIt! PSM to error-->
+  <include file="$(find hrwros_gazebo)/launch/set_psm_logger.launch"/>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <rosparam param="source_list">[/robot1/joint_states,/robot2/joint_states]</rosparam>
+    <remap from="/joint_states" to="/combined_joint_states"/>
+  </node>
+
+  <!-- Start RVIZ with Gazebo if necessary -->
+  <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find hrwros_support)/config/hrwros.rviz"/>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robots_state_publisher">
+    <param name="publish_frequency" type="double" value="50.0"/>
+    <remap from="/joint_states" to="/combined_joint_states"/>
+  </node>
+
   <node pkg="tf2_ros" type="static_transform_publisher" name="map_to_target1" args="0.13 1.44 0 0 0 0 1  map turtlebot_target1"/>
   <node pkg="tf2_ros" type="static_transform_publisher" name="map_to_target2" args="-8.1 -1.43 0 0 0 0 1  map turtlebot_target2"/>
-
 </launch>

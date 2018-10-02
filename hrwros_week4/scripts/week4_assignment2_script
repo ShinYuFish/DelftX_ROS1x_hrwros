@@ -1,0 +1,5 @@
+use robot2
+go R2Up
+go R2Home
+go R2PreGrasp
+go down 0.25
