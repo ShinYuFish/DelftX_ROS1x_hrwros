@@ -31,12 +31,12 @@
   <include file="$(find hrwros_gazebo)/launch/spawn_static_world_objects.launch"/>
   <include file="$(find hrwros_gazebo)/launch/spawn_robots.launch"/>
   <node pkg="hrwros_utilities" type="timed_roslaunch.sh" name="timed_roslaunch" output="screen"
-    args="7 hrwros_gazebo spawn_turtlebot.launch" />
+    args="7 hrwros_week5 spawn_turtlebot_week5.launch" />
 
   <!-- Start the conveyor spawner node -->
   <node name="conveyor_spawner" pkg="hrwros_gazebo" type="conveyor_spawner_node" output="screen">
-    <rosparam command="load" file="$(find hrwros_gazebo)/config/conveyor_objects.yaml"/>
-    <remap from="/start_spawn" to="/spawn_object_once"/>
+    <rosparam command="load" file="$(find hrwros_week5)/config/turtlebot_object.yaml"/>
+    <remap from="/start_spawn" to="/spawn_object_on_turtlebot"/>
   </node>
 
   <node name="spawn_object_once" pkg="hrwros_utilities" type="spawn_object_once.py" output="screen"/>
@@ -63,6 +63,10 @@
   <!-- Workaround for MoveIt! PSM warnings: Elevate the logger level of MoveIt! PSM to error-->
   <include file="$(find hrwros_gazebo)/launch/set_psm_logger.launch"/>
 
+  <!-- We don't navigate autonomously with the Turtlebot. But move_base will not be happy if we spawn turtlebot too far away from the map origin. Hence, avoid warnings only for this assignment -->
+  <!-- Workaround for MoveIt! PSM warnings: Elevate the logger level of MoveIt! PSM to error-->
+  <include file="$(find hrwros_week5)/launch/set_move_base_logger.launch"/>
+
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
     <rosparam param="source_list">[/robot1/joint_states,/robot2/joint_states]</rosparam>
     <remap from="/joint_states" to="/combined_joint_states"/>
@@ -70,8 +74,8 @@
 
   <!-- Start AMCL -->
   <include file="$(find turtlebot_gazebo)/launch/amcl_demo.launch">
-    <arg name="initial_pose_x" value="-4.0" />
-    <arg name="initial_pose_y" value="-0.2" />
+    <arg name="initial_pose_x" value="-8.3" />
+    <arg name="initial_pose_y" value="-1.23" />
   </include>
 
   <!-- Start RVIZ with Gazebo if necessary -->

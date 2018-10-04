@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>hrwros_utilities</name>
+  <version>0.1.0</version>
+  <description>The hrwros_utilities package</description>
+  <maintainer email="donnie@todo.todo">donnie</maintainer>
+  <license>BSD</license>
+  <buildtool_depend>catkin</buildtool_depend>
+</package>

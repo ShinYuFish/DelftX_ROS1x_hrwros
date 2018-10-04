@@ -36,6 +36,8 @@ add_message_files(
     ConveyorBeltState.msg
     VacuumGripperState.msg
     Proximity.msg
+    Model.msg
+    LogicalCameraImage.msg
 )
 
 add_service_files(
@@ -236,3 +238,21 @@ target_link_libraries(${object_disposal_plugin_name}
 #  LIBRARY DESTINATION lib
 #  RUNTIME DESTINATION bin
 #)
+
+# Create the libROSLogicalCameraPlugin.so library.
+set(ros_logical_camera_plugin_name ROSLogicalCameraPlugin)
+add_library(${ros_logical_camera_plugin_name} src/plugins/ROSLogicalCameraPlugin.cc)
+target_link_libraries(${ros_logical_camera_plugin_name}
+  ${catkin_LIBRARIES}
+  ${GAZEBO_LIBRARIES}
+  ${roscpp_LIBRARIES}
+  ${sensor_msgs_LIBRARIES}
+)
+add_dependencies(${ros_logical_camera_plugin_name}
+  ${${PROJECT_NAME}_EXPORTED_TARGETS}
+)
+install(TARGETS ${ros_logical_camera_plugin_name}
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+)

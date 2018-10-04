@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>hrwros_week5</name>
+  <version>0.0.0</version>
+  <description>The hrwros_week5 package</description>
+
+  <maintainer email="donnie@todo.todo">donnie</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>tf2_geometry_msgs</exec_depend>
+
+</package>

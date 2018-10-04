@@ -53,5 +53,17 @@
       <pose>1.2 -5.1 1.425 0 0 1.5708</pose>
     </include>
 
+    <joint name="robot1_to_world" type="fixed">
+      <parent>world</parent>
+      <child>robot1_base_link</child>
+    </joint>
+
+    <joint name="robot2_to_world" type="fixed">
+      <parent>world</parent>
+      <child>robot2_base_link</child>
+    </joint>
+
+    <!-- Add the logical cameras here. -->
+
   </world>
 </sdf>

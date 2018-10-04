@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="rosservice" type="rosservice" name="suppress_move_base_warnings" args="call --wait /move_base/set_logger_level  '{logger: ros.costmap_2d, level: error}'"/>
+  <node pkg="rosservice" type="rosservice" name="suppress_conveyor_info" args="call --wait /conveyor_spawner/set_logger_level  '{logger: ros, level: error}'"/>  
+</launch>

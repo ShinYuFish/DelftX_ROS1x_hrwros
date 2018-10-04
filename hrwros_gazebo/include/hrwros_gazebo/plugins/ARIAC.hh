@@ -251,6 +251,21 @@ namespace ariac
 
     return modelType;
   }
+  
+  /// \brief Determine the ID of a gazebo model from its name
+  std::string DetermineModelId(const std::string &modelName)
+  {
+    std::string modelId(TrimNamespace(modelName));
+
+    // Trim trailing underscore and number caused by inserting multiple of the same model
+    size_t index = modelId.find_last_not_of("0123456789");
+    if (modelId[index] == '_' && index > 1)
+    {
+      modelId = modelId.substr(index + 1);
+    }
+
+    return modelId;
+  }
 
   /// \brief Class to store information about each object contained in a kit.
   class KitObject

@@ -44,7 +44,7 @@
 
     <!-- Spawn robot2, its state publisher and controller. -->
     <node name="robot2_spawner" pkg="gazebo_ros" type="spawn_model"
-      args="-x -7.8 -y -1.5 -z 0.7 -Y 1.57 -unpause -urdf -model robot2 -param robot2_description" respawn="false" output="screen">
+      args="-x -7.8 -y -1.5 -z 0.765 -Y 1.57 -unpause -urdf -model robot2 -param robot2_description" respawn="false" output="screen">
     </node>
 
     <node name="robot2_controller_spawner" pkg="controller_manager" type="spawner"
