@@ -51,7 +51,7 @@ def logical_camera2_callback(data):
     # Create a pose stamped message type from the camera image topic.
     object_pose = geometry_msgs.msg.PoseStamped()
     object_pose.header.stamp = rospy.Time.now()
-    object_pose.header.frame_id = <write your code here>
+    object_pose.header.frame_id = "logical_camera_2_frame"
     object_pose.pose.position.x = data.models[-1].pose.position.x
     object_pose.pose.position.y = data.models[-1].pose.position.y
     object_pose.pose.position.z = data.models[-1].pose.position.z
@@ -61,7 +61,7 @@ def logical_camera2_callback(data):
     object_pose.pose.orientation.w = data.models[-1].pose.orientation.w
     while True:
       try:
-        object_world_pose = tf_buffer.transform(object_pose, <write your code here>)
+        object_world_pose = tf_buffer.transform(object_pose, "vacuum_gripper2_suction_cup")
         break
       except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
         continue
@@ -79,6 +79,6 @@ if __name__== '__main__':
                     anonymous=True)
 
   # Subscribe to the logical camera topic.
-  rospy.Subscriber('<write your code here>', <write your code here>, logical_camera2_callback)
+  rospy.Subscriber('hrwros/logical_camera_2', LogicalCameraImage, logical_camera2_callback)
 
   rospy.spin()

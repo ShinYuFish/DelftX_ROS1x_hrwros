@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.6">
-  <model name=<write your code here>>
+  <model name="logical_camera_2">
     <plugin name="ros_logical_camera_2" filename="libROSLogicalCameraPlugin.so">
       <robotNamespace>hrwros</robotNamespace>
       <!-- <position_noise>
@@ -18,7 +18,7 @@
         </noise>
       </orientation_noise> -->
     </plugin>
-    <link name=<write your code here>>
+    <link name="logical_camera_2_link">
       <gravity>false</gravity>
       <inertial>
         <mass>0.1</mass>
@@ -47,7 +47,7 @@
         </geometry>
       </visual>
 
-      <sensor name=<write your code here> type="logical_camera">
+      <sensor name="logical_camera_2" type="logical_camera">
 
         <logical_camera>
           <near>0.2</near>

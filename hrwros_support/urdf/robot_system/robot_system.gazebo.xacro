@@ -23,6 +23,9 @@
     <gazebo reference="${robot_prefix}wrist_3_link">
       <turnGravityOff>true</turnGravityOff>
     </gazebo>
+    <gazebo reference="${robot_prefix}ee_link">
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
 
     <gazebo>
       <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
