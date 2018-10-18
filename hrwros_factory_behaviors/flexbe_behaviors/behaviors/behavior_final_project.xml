@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="Final Project">
+
+	<executable package_path="behavior_final_project.final_project_sm" class="FinalProjectSM" />
+	<tagstring>factory</tagstring>
+	<author>Carlos Hernandez</author>
+	<date>Sun Oct 07 2018</date>
+	<description>
+		Final project for the MOOC Hello (Real) World with ROS
+The three robots in the factory move to process the parts
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

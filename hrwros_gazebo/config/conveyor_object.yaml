@@ -1,0 +1,57 @@
+spawner:
+  reference_frame: world            # Gazebo frame in which to spawn the parts
+  spawn_period: 3.0                 # [s] Time between component spawnings
+  randomization_seed: 0             # Seed for randomization engine
+  objects:
+    # - name: gear                        # Name of the spawned object
+    #   mesh_resource: package://hrwros_gazebo/meshes/conveyor_objects/gear.stl
+    #   initial_pose:                     # Initial object pose relative to the reference frame
+    #     position: [1.2, 4.0, 1.0]
+    #     orientation: [0.0, 0.0, 0.0]
+    #   lateral_placement_variance: 0.2   # [m] Distance range for objects to be placed transversely on the conveyor
+    #   yaw_placement_variance: 180.0     # [deg] Rotation angle range for objects to be placed on the conveyor
+    #   spawn_timing_variance: 1.0        # [s] Delay
+    #
+    # - name: piston_rod                        # Name of the spawned object
+    #   mesh_resource: package://hrwros_gazebo/meshes/conveyor_objects/piston_rod.stl
+    #   initial_pose:                     # Initial object pose relative to the reference frame
+    #     position: [1.2, 4.0, 0.93]
+    #     orientation: [0.0, 0.0, 0.0]
+    #   lateral_placement_variance: 0.2   # [m] Distance range for objects to be placed transversely on the conveyor
+    #   yaw_placement_variance: 20.0     # [deg] Rotation angle range for objects to be placed on the conveyor
+    #   spawn_timing_variance: 1.0        # [s] Delay
+    #
+    # - name: pulley                        # Name of the spawned object
+    #   mesh_resource: package://hrwros_gazebo/meshes/conveyor_objects/pulley.stl
+    #   initial_pose:                     # Initial object pose relative to the reference frame
+    #     position: [1.2, 4.0, 1.0]
+    #     orientation: [0.0, 0.0, 0.0]
+    #   lateral_placement_variance: 0.2   # [m] Distance range for objects to be placed transversely on the conveyor
+    #   yaw_placement_variance: 180.0     # [deg] Rotation angle range for objects to be placed on the conveyor
+    #   spawn_timing_variance: 1.0        # [s] Delay
+    #
+    # - name: gasket                        # Name of the spawned object
+    #   mesh_resource: package://hrwros_gazebo/meshes/conveyor_objects/gasket.stl
+    #   initial_pose:                     # Initial object pose relative to the reference frame
+    #     position: [1.2, 4.0, 1.0]
+    #     orientation: [0.0, 0.0, 0.0]
+    #   lateral_placement_variance: 0.2   # [m] Distance range for objects to be placed transversely on the conveyor
+    #   yaw_placement_variance: 180.0     # [deg] Rotation angle range for objects to be placed on the conveyor
+    #   spawn_timing_variance: 1.0        # [s] Delay
+    #
+    # - name: disk                        # Name of the spawned object
+    #   mesh_resource: package://hrwros_gazebo/meshes/conveyor_objects/disk.stl
+    #   initial_pose:                     # Initial object pose relative to the reference frame
+    #     position: [1.2, 4.0, 1.0]
+    #     orientation: [0.0, 0.0, 0.0]
+    #   lateral_placement_variance: 0.2   # [m] Distance range for objects to be placed transversely on the conveyor
+    #   yaw_placement_variance: 180.0     # [deg] Rotation angle range for objects to be placed on the conveyor
+    #   spawn_timing_variance: 1.0        # [s] Delay
+    - name: conveyor_box                        # Name of the spawned object
+      mesh_resource: package://hrwros_gazebo/meshes/conveyor_objects/box.stl
+      initial_pose:                     # Initial object pose relative to the reference frame
+        position: [1.2, 1.8, 1.0]
+        orientation: [0.0, 0.0, 0.0]
+      lateral_placement_variance: 0.0   # [m] Distance range for objects to be placed transversely on the conveyor
+      yaw_placement_variance: 0.0     # [deg] Rotation angle range for objects to be placed on the conveyor
+      spawn_timing_variance: 0.0        # [s] Delay

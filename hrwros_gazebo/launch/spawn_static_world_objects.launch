@@ -8,6 +8,7 @@
   <arg name="robot2_pedestal" value="robot2_pedestal_"/>
   <arg name="vacuum_gripper1_prefix" value="vacuum_gripper1_"/>
   <arg name="vacuum_gripper2_prefix" value="vacuum_gripper2_"/>
+  <arg name="logical_camera1_prefix" value="logical_camera1_"/>
   <arg name="break_beam" value="break_beam_"/>
   <arg name="bin_1" value="bin_1_"/>
 
@@ -20,6 +21,9 @@
 
   <param name="$(arg bin_1)description"
     command="$(find xacro)/xacro --inorder '$(find hrwros_support)/urdf/bin/bin.xacro' prefix:=$(arg bin_1)"/>
+
+    <param name="$(arg logical_camera1_prefix)description"
+      command="$(find xacro)/xacro --inorder '$(find hrwros_support)/urdf/logical_camera/logical_camera.xacro' prefix:=$(arg logical_camera1_prefix)"/>
 
   <param name="$(arg robot1_pedestal)description"
     command="$(find xacro)/xacro --inorder '$(find hrwros_support)/urdf/robot_pedestal/robot1_pedestal.xacro' pedestal_prefix:=$(arg robot1_pedestal) pedestal_parent:=$(arg workcell_parent_name) pedestal_height:=0.95"/>

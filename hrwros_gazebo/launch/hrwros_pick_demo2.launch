@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="rviz" default = "false"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="extra_gazebo_args" default=""/>
+
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find hrwros_gazebo)/worlds/hrwros.world"/>
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="extra_gazebo_args" value="$(arg extra_gazebo_args)"/>
+  </include>
+
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <include file="$(find hrwros_support)/launch/load_hrwros.launch"/>
+
+  <!-- Start move_group -->
+  <include file="$(find week4_moveit_config)/launch/move_group.launch"/>
+
+  <!-- Spawn the URDF objects into Gazebo -->
+  <include file="$(find hrwros_gazebo)/launch/spawn_static_world_objects.launch"/>
+  <include file="$(find hrwros_gazebo)/launch/spawn_robots.launch"/>
+
+  <!-- Start the conveyor spawner node -->
+  <node name="conveyor_spawner" pkg="hrwros_gazebo" type="conveyor_spawner_node" output="screen">
+    <rosparam command="load" file="$(find hrwros_gazebo)/config/conveyor_objects_moving.yaml"/>
+  </node>
+
+  <node name="spawn_object_once" pkg="hrwros_utilities" type="spawn_object_once.py" output="screen"/>
+
+  <!-- Workaround for MoveIt! PSM warnings: Elevate the logger level of MoveIt! PSM to error-->
+  <include file="$(find hrwros_gazebo)/launch/set_psm_logger.launch"/>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <rosparam param="source_list">[/robot1/joint_states,/robot2/joint_states]</rosparam>
+    <remap from="/joint_states" to="/combined_joint_states"/>
+  </node>
+
+  <!-- Start RVIZ with Gazebo if necessary -->
+  <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find hrwros_support)/config/hrwros.rviz"/>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robots_state_publisher">
+    <param name="publish_frequency" type="double" value="50.0"/>
+    <remap from="/joint_states" to="/combined_joint_states"/>
+  </node>
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="map_to_world" args="0 0 0 0 0 0 1  map world"/>
+</launch>

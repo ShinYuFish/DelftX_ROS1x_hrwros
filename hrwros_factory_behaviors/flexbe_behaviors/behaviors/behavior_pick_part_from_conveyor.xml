@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="Pick part from conveyor">
+
+	<executable package_path="behavior_pick_part_from_conveyor.pick_part_from_conveyor_sm" class="PickpartfromconveyorSM" />
+	<tagstring>facotry, robot arm, pick</tagstring>
+	<author>Carlos Hernandez</author>
+	<date>Tue Aug 07 2018</date>
+	<description>
+		This is a behavior for the hrwros factory simulation that picks a part from the conveyor belt using robot1
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>

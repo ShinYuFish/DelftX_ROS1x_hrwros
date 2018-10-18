@@ -22,7 +22,7 @@
         <suction_cup_link>${gripper_link}</suction_cup_link>
 
         <!-- ROS -->
-        <robot_namespace>/hrwros</robot_namespace>
+        <!-- <robot_namespace>/hrwros</robot_namespace> -->
         <control_topic>${plugin_name}/control</control_topic>
         <state_topic>${plugin_name}/state</state_topic>
       </plugin>

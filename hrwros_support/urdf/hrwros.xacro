@@ -40,9 +40,9 @@
   <xacro:include filename="$(find hrwros_support)/urdf/bin/bin.urdf.xacro"/>
   <xacro:bin_urdf prefix="bin_1_"/>
 
-  <!-- depth camera -->
-  <xacro:include filename="$(find hrwros_support)/urdf/depth_camera/depth_camera.urdf.xacro"/>
-  <xacro:depth_camera_urdf prefix="depth_camera_"/>
+  <!-- logical camera collision model -->
+  <xacro:include filename="$(find hrwros_support)/urdf/logical_camera/logical_camera.urdf.xacro"/>
+  <xacro:logical_camera_urdf prefix="logical_camera1_"/>
 
   <!-- break beam -->
   <xacro:include filename="$(find hrwros_support)/urdf/break_beam/break_beam.urdf.xacro"/>
@@ -63,8 +63,8 @@
 
   <!-- robot1 to pedestal. -->
   <joint name="robot1_to_pedestal" type="fixed">
-  <origin xyz="0 0 0.95" rpy="0 0 0" />
-  <parent link="robot1_pedestal_link" />
+  <origin xyz="0.5 1.8 0.95" rpy="0 0 0" />
+  <parent link="world_interface" />
   <child link="robot1_base_link" />
   </joint>
 
@@ -83,9 +83,9 @@
 
   <!-- robot2 to pedestal. -->
   <joint name="robot2_to_pedestal" type="fixed">
-    <parent link="robot2_pedestal_link" />
+    <parent link="world_interface" />
     <child link="robot2_base_link" />
-    <origin xyz="0 0 0.7" rpy="0 0 ${radians(90)}" />
+    <origin xyz="-7.8 -1.5 0.7" rpy="0 0 ${radians(90)}" />
   </joint>
 
   <!-- gripper2 to robot2. -->
@@ -100,16 +100,16 @@
     <child link="break_beam_world_interface" />
   </joint>
 
-  <!-- TODO: Replace this with logical camera. -->
-  <joint name="camera_link" type="fixed">
-    <parent link="world_interface"/>
-    <child link="depth_camera_world_interface" />
-  </joint>
-
   <!-- bin to world. -->
   <joint name="bin_1_joint" type="fixed">
     <parent link="world_interface" />
     <child link="bin_1_base_link" />
     <origin xyz="-8.0 -2.2 0.0" rpy="0 0 0" />
+  </joint>
+
+  <!-- logicam1 to world. -->
+  <joint name="logicam_world_interface" type="fixed">
+    <parent link="world_interface" />
+    <child link="logical_camera1_world_interface" />
   </joint>
 </robot>

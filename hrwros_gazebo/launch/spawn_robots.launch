@@ -15,7 +15,7 @@
     <param name="tf_prefix" value="robot1"/>
 
     <param name="/robot1/$(arg robot1_prefix)description"
-      command="$(find xacro)/xacro --inorder '$(find hrwros_support)/urdf/robot_system/robot_system.xacro' robot_type:=$(arg robot1_type) robot_prefix:=$(arg robot1_prefix) vacuum_gripper_prefix:=$(arg vacuum_gripper1_prefix) robot_param:=/robot1/$(arg robot1_prefix)description gripper_plugin_name:=$(arg gripper1_plugin_name)"/>
+       command="$(find xacro)/xacro --inorder '$(find hrwros_support)/urdf/robot_system/robot_system.xacro' robot_type:=$(arg robot1_type) robot_prefix:=$(arg robot1_prefix) vacuum_gripper_prefix:=$(arg vacuum_gripper1_prefix) robot_param:=/robot1/$(arg robot1_prefix)description gripper_plugin_name:=$(arg gripper1_plugin_name)"/>
 
     <!-- Load the controllers for robot1. -->
     <rosparam file="$(find hrwros_gazebo)/config/r1_joint_state_controller.yaml" command="load"/>

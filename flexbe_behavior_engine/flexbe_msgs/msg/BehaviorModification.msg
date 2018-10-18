@@ -1,0 +1,3 @@
+int32 index_begin
+int32 index_end
+string new_content

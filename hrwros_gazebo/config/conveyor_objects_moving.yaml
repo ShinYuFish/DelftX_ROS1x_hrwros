@@ -1,0 +1,13 @@
+spawner:
+  reference_frame: world            # Gazebo frame in which to spawn the parts
+  spawn_period: 3.0                 # [s] Time between component spawnings
+  randomization_seed: 0             # Seed for randomization engine
+  objects:
+    - name: box                        # Name of the spawned object
+      mesh_resource: package://hrwros_gazebo/meshes/conveyor_objects/box.stl
+      initial_pose:                     # Initial object pose relative to the reference frame
+        position: [1.2, 3.0, 1.0]
+        orientation: [0.0, 0.0, 0.0]
+      lateral_placement_variance: 0.0   # [m] Distance range for objects to be placed transversely on the conveyor
+      yaw_placement_variance: 0.0       # [deg] Rotation angle range for objects to be placed on the conveyor
+      spawn_timing_variance: 0.0        # [s] Delay

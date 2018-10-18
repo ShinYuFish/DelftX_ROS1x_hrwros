@@ -1,0 +1,21 @@
+<package>
+  <name>behavior_final_project</name>
+  <version>1.0.0</version>
+  <description>
+     Final project for the MOOC Hello (Real) World with ROS
+The three robots in the factory move to process the parts
+  </description>
+  <maintainer email="todo@todo.com">Carlos Hernandez</maintainer>
+  <license>BSD</license>
+
+  <url>http://ros.org/wiki/behavior_final_project</url>
+  <author>Carlos Hernandez</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>rospy</run_depend>
+  <run_depend>flexbe_core</run_depend>
+  <run_depend>flexbe_states</run_depend>
+  <run_depend>hrwros_factory_states</run_depend>
+
+</package>

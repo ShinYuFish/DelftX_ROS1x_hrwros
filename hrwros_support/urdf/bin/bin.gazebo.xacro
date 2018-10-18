@@ -12,12 +12,14 @@
 
     <gazebo>
       <static>true</static>
-      <plugin name="${prefix}object_disposal_plugin" filename="libObjectDisposalPlugin.so">
+<!--
+       <plugin name="${prefix}object_disposal_plugin" filename="libObjectDisposalPlugin.so">
         <contact_sensor_name>${prefix}contact_sensor</contact_sensor_name>
         <contact_side_normal>0 0 1</contact_side_normal>
         <disposal_pose>0 0 0 0 0 0</disposal_pose>
         <update_rate>1</update_rate>
       </plugin>
-    </gazebo>
+ -->
+     </gazebo>
   </xacro:macro>
 </robot>

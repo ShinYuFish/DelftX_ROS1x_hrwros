@@ -4,13 +4,13 @@
   <xacro:arg name="robot_prefix" default="robot1_"/>
   <xacro:arg name="vacuum_gripper_prefix" default="vacuum_gripper1_"/>
   <xacro:arg name="robot_param" default="/robot1/robot1_description"/>
+   <xacro:arg name="gripper_plugin_name" default="gripper1"/>
 
   <!-- URDF -->
   <xacro:include filename="$(find hrwros_support)/urdf/robot_system/robot_system.urdf.xacro"/>
-  <xacro:robot_system_urdf robot_type= "$(arg robot_type)" robot_prefix="$(arg robot_prefix)" vacuum_gripper_prefix="$(arg vacuum_gripper_prefix"/>
+  <xacro:robot_system_urdf robot_type= "$(arg robot_type)" robot_prefix="$(arg robot_prefix)" vacuum_gripper_prefix="$(arg vacuum_gripper_prefix)"/>
 
   <!-- Gazebo -->
   <xacro:include filename="$(find hrwros_support)/urdf/robot_system/robot_system.gazebo.xacro"/>
-  <xacro:robot_system_gazebo robot_prefix="$(arg robot_prefix)" robot_parameter_name="$(arg robot_param)"/>
-
+  <xacro:robot_system_gazebo robot_prefix="$(arg robot_prefix)" robot_parameter_name="$(arg robot_param)" vacuum_gripper_prefix="$(arg vacuum_gripper_prefix)" gripper_plugin_name="$(arg gripper_plugin_name)"/>
 </robot>

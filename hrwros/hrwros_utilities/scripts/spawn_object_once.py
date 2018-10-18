@@ -43,6 +43,8 @@ def model_states_cb(data):
   if any("object" in idx for idx in data.name):
     stop_spawn = rospy.ServiceProxy('stop_spawn', Empty)
     stop_spawn()
+    rospy.signal_shutdown('One object successfully spawned.')
+
 
 if __name__ == "__main__":
   # ROS node for the service server.

@@ -1,0 +1,20 @@
+<package>
+  <name>behavior_pick_part_from_conveyor</name>
+  <version>1.0.0</version>
+  <description>
+     This is a behavior for the hrwros factory simulation that picks a part from the conveyor belt using Robot 1.
+  </description>
+  <maintainer email="todo@todo.com">Carlos Hernandez</maintainer>
+  <license>BSD</license>
+
+  <url>http://ros.org/wiki/behavior_pick_part_from_conveyor</url>
+  <author>Carlos Hernandez</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>rospy</run_depend>
+  <run_depend>flexbe_core</run_depend>
+  <run_depend>flexbe_states</run_depend>
+  <run_depend>hrwros_factory_states</run_depend>
+
+</package>

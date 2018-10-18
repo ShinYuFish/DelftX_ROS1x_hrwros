@@ -1,0 +1,31 @@
+<package>
+  <name>hrwros_factory_states</name>
+  <version>1.0.0</version>
+  <description>
+     hrwros_factory_states provides a collection of custom states for to interface the gilbreth factory simulation in the MOOC "hello (real) World with ROS".
+     Feel free to add new states.
+  </description>
+  <maintainer email="donnie@todo.todo">Carlos Hernandez</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>rospy</run_depend>
+
+  <run_depend>flexbe_core</run_depend>
+
+  <run_depend>actionlib</run_depend>
+  <run_depend>gazebo_msgs</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>hrwros_gazebo</run_depend>
+  <run_depend>move_base_msgs</run_depend>
+  <run_depend>moveit_commander</run_depend>
+  <run_depend>moveit_msgs</run_depend>
+  <run_depend>moveit_python</run_depend>
+  <run_depend>rostopic</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>std_srvs</run_depend>
+  <run_depend>tf2_geometry_msgs</run_depend>
+  <run_depend>tf2_ros</run_depend>
+  <run_depend>tf</run_depend>
+</package>

@@ -35,6 +35,7 @@
   <exec_depend>rviz</exec_depend>
   <exec_depend>yocs_cmd_vel_mux</exec_depend>
   <exec_depend>kobuki_gazebo_plugins</exec_depend>
+  <exec_depend>fake_localization</exec_depend>
 
   <export>
     <gazebo_ros plugin_path="${prefix}/lib" />

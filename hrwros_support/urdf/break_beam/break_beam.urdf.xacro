@@ -34,7 +34,7 @@
     <joint name="${prefix}world_joint" type="fixed">
       <parent link="${prefix}world_interface" />
       <child link="${prefix}base_link" />
-      <origin xyz="1.6 2.7 0.925" rpy="0 0 ${radians(180)}" />
+      <origin xyz="1.6 1.9 0.925" rpy="0 0 ${radians(180)}" />
     </joint>
     <joint name="${prefix}joint_1" type="fixed">
       <parent link="${prefix}base_link" />

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot name="logical_camera" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="prefix" default="logical_camera1_"/>
+
+  <!-- URDF -->
+  <xacro:include filename="$(find hrwros_support)/urdf/logical_camera/logical_camera.urdf.xacro"/>
+  <xacro:logical_camera_urdf prefix="$(arg prefix)"/>
+
+</robot>
