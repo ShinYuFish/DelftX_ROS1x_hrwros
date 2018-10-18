@@ -104,7 +104,7 @@
   </link>
   <!-- Add your solution to assignment 2 here -->
   <joint name="sphere_joint" type="fixed">
-    <origin xyz="5.8 -5.3 0" />
+    <origin xyz="5.8 -5.3 0.4" />
     <parent link="world" />
     <child link="sphere_link" />
   </joint>
