@@ -5,7 +5,7 @@ All the course created ROS package and programming assignment are included.
 
 ### Course Outline
 
-- Week 1: ROS Essentials: includeing ROS basic concept ex: rostopic, rosservice, rosaction 
+- Week 1: ROS Essentials: ROS basic concept ex: rostopic, rosservice, rosaction, launch files 
 - Week 2: Build your own robot environment: how to write urdf and how to use simulation tools(gazebo)
 - Week 3: Autonomous Navigation: Using gmapping package to create virtue map and navigate turtlebot in simulation environment 
 - Week 4: Manipulation: Familiar with [moveit](https://moveit.ros.org/) and manipulation system 
